@@ -1,89 +1,32 @@
 "use strict";
 
-// LESSON 9 - This file is gonna be compiled by Babel
-// Here it goes React code. JSX.
-
-var data = {
-    title: "The Lord Of The Rings",
-    subtitle: "The Community Of The Ring",
-    options: ["Frodo", "Sam", "Aragorn"]
-};
-console.log("App.js is running!");
-var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        data.title
-    ),
-    data.subtitle && React.createElement(
-        "p",
-        null,
-        data.subtitle
-    ),
-    React.createElement(
-        "p",
-        null,
-        data.options && data.options.length > 0 ? "Here are your options" : "No options"
-    ),
-    React.createElement(
-        "ol",
-        null,
-        React.createElement(
-            "li",
-            null,
-            "Frodo"
-        ),
-        React.createElement(
-            "li",
-            null,
-            "Sam"
-        ),
-        React.createElement(
-            "li",
-            null,
-            "Aragon"
-        )
-    )
-);
-
-var user = {
-    name: "Alberto",
-    age: 29,
-    location: "Getafe"
+// ES5 - function
+var square = function square(n) {
+    return n * n;
 };
 
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            "p",
-            null,
-            "Location: ",
-            location
-        );
-    }
+// ES6 - arrow
+var squareArrow = function squareArrow(n) {
+    return n * n;
 };
 
-var templateTwo = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        user.name ? user.name : "Anonymous"
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        "p",
-        null,
-        "Age: ",
-        user.age
-    ),
-    getLocation(user.location)
-);
+// ES6 - arrow expressions
+var squareArrowExpr = function squareArrowExpr(n) {
+    return n * n;
+};
 
-var appRoot = document.getElementById("app");
+console.log(square(8));
+console.log(squareArrow(9));
+console.log(squareArrowExpr(12));
 
-// We're gonna render this template above
-// Takes 2 arguments. The JSX and the DOM element where we want to render it
-ReactDOM.render(template, appRoot);
+// Challenge
+var getFirstName = function getFirstName(fullName) {
+    return fullName.split(" ")[0];
+};
+
+var getFirstNameExpr = function getFirstNameExpr(fullName) {
+    return fullName.split(" ")[0];
+};
+
+console.log(getFirstName("Alberto Villena"));
+console.log(getFirstNameExpr("Perico Delgado"));
