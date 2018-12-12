@@ -3,13 +3,15 @@
 
 var data = {
     title: "The Lord Of The Rings",
-    subtitle: "The Community Of The Ring"
+    subtitle: "The Community Of The Ring",
+    options: ["Frodo", "Sam", "Aragorn"]
 }
 console.log("App.js is running!");
 var template = (
     <div>
         <h1>{data.title}</h1>
-        <p>{data.subtitle}</p>
+        {data.subtitle && <p>{data.subtitle}</p>}
+        <p>{data.options && data.options.length > 0 ? "Here are your options": "No options"}</p>
         <ol>
             <li>Frodo</li>
             <li>Sam</li>
@@ -23,11 +25,18 @@ var user = {
     age: 29,
     location: "Getafe"
 };
+
+function getLocation(location) {
+    if (location) {
+        return <p>Location: {location}</p>;
+    }
+};
+
 var templateTwo = (
     <div>
-        <h1>{user.name}</h1>
-        <p>Age: {user.age}</p>
-        <p>Location: {user.location}</p>
+        <h1>{user.name ? user.name : "Anonymous"}</h1>
+        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+        {getLocation(user.location)}
     </div>
 );
 

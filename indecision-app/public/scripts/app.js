@@ -5,7 +5,8 @@
 
 var data = {
     title: "The Lord Of The Rings",
-    subtitle: "The Community Of The Ring"
+    subtitle: "The Community Of The Ring",
+    options: ["Frodo", "Sam", "Aragorn"]
 };
 console.log("App.js is running!");
 var template = React.createElement(
@@ -16,10 +17,15 @@ var template = React.createElement(
         null,
         data.title
     ),
-    React.createElement(
+    data.subtitle && React.createElement(
         "p",
         null,
         data.subtitle
+    ),
+    React.createElement(
+        "p",
+        null,
+        data.options && data.options.length > 0 ? "Here are your options" : "No options"
     ),
     React.createElement(
         "ol",
@@ -47,26 +53,33 @@ var user = {
     age: 29,
     location: "Getafe"
 };
+
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            "p",
+            null,
+            "Location: ",
+            location
+        );
+    }
+};
+
 var templateTwo = React.createElement(
     "div",
     null,
     React.createElement(
         "h1",
         null,
-        user.name
+        user.name ? user.name : "Anonymous"
     ),
-    React.createElement(
+    user.age && user.age >= 18 && React.createElement(
         "p",
         null,
         "Age: ",
         user.age
     ),
-    React.createElement(
-        "p",
-        null,
-        "Location: ",
-        user.location
-    )
+    getLocation(user.location)
 );
 
 var appRoot = document.getElementById("app");
