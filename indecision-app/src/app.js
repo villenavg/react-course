@@ -1,13 +1,13 @@
 // LESSON 9 - This file is gonna be compiled by Babel
 // Here it goes React code. JSX.
 
-var data = {
+const data = {
     title: "The Lord Of The Rings",
     subtitle: "The Community Of The Ring",
     options: ["Frodo", "Sam", "Aragorn"]
 }
 console.log("App.js is running!");
-var template = (
+const template = (
     <div>
         <h1>{data.title}</h1>
         {data.subtitle && <p>{data.subtitle}</p>}
@@ -20,7 +20,7 @@ var template = (
     </div>
 );
 
-var user = {
+const user = {
     name: "Alberto",
     age: 29,
     location: "Getafe"
@@ -32,7 +32,7 @@ function getLocation(location) {
     }
 };
 
-var templateTwo = (
+const templateTwo = (
     <div>
         <h1>{user.name ? user.name : "Anonymous"}</h1>
         {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
@@ -40,7 +40,7 @@ var templateTwo = (
     </div>
 );
 
-var appRoot = document.getElementById("app");
+const appRoot = document.getElementById("app");
 
 // We're gonna render this template above
 // Takes 2 arguments. The JSX and the DOM element where we want to render it
