@@ -48,21 +48,15 @@ var template = React.createElement(
     )
 );
 
-var user = {
-    name: "Alberto",
-    age: 29,
-    location: "Getafe"
+var count = 0;
+var addOne = function addOne() {
+    return console.log("Add One");
 };
-
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            "p",
-            null,
-            "Location: ",
-            location
-        );
-    }
+var minusOne = function minusOne() {
+    return console.log("Minus One");
+};
+var reset = function reset() {
+    return console.log("Reset");
 };
 
 var templateTwo = React.createElement(
@@ -71,19 +65,26 @@ var templateTwo = React.createElement(
     React.createElement(
         "h1",
         null,
-        user.name ? user.name : "Anonymous"
+        "Count: ",
+        count
     ),
-    user.age && user.age >= 18 && React.createElement(
-        "p",
-        null,
-        "Age: ",
-        user.age
+    React.createElement(
+        "button",
+        { onClick: addOne },
+        "+1"
     ),
-    getLocation(user.location)
+    React.createElement(
+        "button",
+        { onClick: minusOne },
+        "-1"
+    ),
+    React.createElement(
+        "button",
+        { onClick: reset },
+        "Reset"
+    )
 );
 
 var appRoot = document.getElementById("app");
 
-// We're gonna render this template above
-// Takes 2 arguments. The JSX and the DOM element where we want to render it
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

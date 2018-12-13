@@ -20,28 +20,20 @@ const template = (
     </div>
 );
 
-const user = {
-    name: "Alberto",
-    age: 29,
-    location: "Getafe"
-};
-
-function getLocation(location) {
-    if (location) {
-        return <p>Location: {location}</p>;
-    }
-};
+let count = 0;
+const addOne = () => console.log("Add One");
+const minusOne = () => console.log("Minus One");
+const reset = () => console.log("Reset")
 
 const templateTwo = (
     <div>
-        <h1>{user.name ? user.name : "Anonymous"}</h1>
-        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-        {getLocation(user.location)}
+        <h1>Count: {count}</h1>
+        <button onClick={addOne}>+1</button>
+        <button onClick={minusOne}>-1</button>
+        <button onClick={reset}>Reset</button> 
     </div>
 );
 
 const appRoot = document.getElementById("app");
 
-// We're gonna render this template above
-// Takes 2 arguments. The JSX and the DOM element where we want to render it
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
