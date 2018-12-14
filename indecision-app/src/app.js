@@ -1,49 +1,46 @@
-// LESSON 9 - This file is gonna be compiled by Babel
-// Here it goes React code. JSX.
-
-const data = {
-    title: "The Lord Of The Rings",
-    subtitle: "The Community Of The Ring",
-    options: ["Frodo", "Sam", "Aragorn"]
-}
 console.log("App.js is running!");
-const template = (
-    <div>
-        <h1>{data.title}</h1>
-        {data.subtitle && <p>{data.subtitle}</p>}
-        <p>{data.options && data.options.length > 0 ? "Here are your options": "No options"}</p>
-        <ol>
-            <li>Frodo</li>
-            <li>Sam</li>
-            <li>Aragon</li>
-        </ol>
-    </div>
-);
+const app = {
+    title: "Indecision App",
+    subtitle: "Put your life in the hands of a computer",
+    options: []
+}
 
-let count = 0;
-const addOne = () => {
-    count++;
-    renderApp();
+const onFormSubmit = (e) => {
+    e.preventDefault();
+    const option = e.target.elements.option.value;
+
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+        renderApp();
+    }
 };
-const minusOne = () => {
-    count--;
+
+const onremoveAllOptions = () => {
+    app.options = [];
     renderApp();
-};
-const reset = () => {
-    count = 0;
-    renderApp();
-};
+}
+
 const renderApp = () => {
     const template = (
         <div>
-            <h1>Count: {count}</h1>
-            <button onClick={addOne}>+1</button>
-            <button onClick={minusOne}>-1</button>
-            <button onClick={reset}>Reset</button> 
+            <h1>{app.title}</h1>
+            {app.subtitle && <p>{app.subtitle}</p>}
+            <p>{app.options && app.options.length > 0 ? "Here are your options": "No options"}</p>
+            <p>Options added: {app.options.length}</p>
+            <button id="remove-all" onClick={onremoveAllOptions}>Remove All</button>
+            <ol>
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ol>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option"/>
+                <button>Add option</button>
+            </form>
         </div>
     );
     ReactDOM.render(template, appRoot);
-};
+}
 
 const appRoot = document.getElementById("app");
 renderApp();

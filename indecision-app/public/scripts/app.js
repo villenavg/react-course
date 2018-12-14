@@ -1,66 +1,28 @@
 "use strict";
 
-// LESSON 9 - This file is gonna be compiled by Babel
-// Here it goes React code. JSX.
-
-var data = {
-    title: "The Lord Of The Rings",
-    subtitle: "The Community Of The Ring",
-    options: ["Frodo", "Sam", "Aragorn"]
-};
 console.log("App.js is running!");
-var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        data.title
-    ),
-    data.subtitle && React.createElement(
-        "p",
-        null,
-        data.subtitle
-    ),
-    React.createElement(
-        "p",
-        null,
-        data.options && data.options.length > 0 ? "Here are your options" : "No options"
-    ),
-    React.createElement(
-        "ol",
-        null,
-        React.createElement(
-            "li",
-            null,
-            "Frodo"
-        ),
-        React.createElement(
-            "li",
-            null,
-            "Sam"
-        ),
-        React.createElement(
-            "li",
-            null,
-            "Aragon"
-        )
-    )
-);
+var app = {
+    title: "Indecision App",
+    subtitle: "Put your life in the hands of a computer",
+    options: []
+};
 
-var count = 0;
-var addOne = function addOne() {
-    count++;
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault();
+    var option = e.target.elements.option.value;
+
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+        renderApp();
+    }
+};
+
+var onremoveAllOptions = function onremoveAllOptions() {
+    app.options = [];
     renderApp();
 };
-var minusOne = function minusOne() {
-    count--;
-    renderApp();
-};
-var reset = function reset() {
-    count = 0;
-    renderApp();
-};
+
 var renderApp = function renderApp() {
     var template = React.createElement(
         "div",
@@ -68,23 +30,52 @@ var renderApp = function renderApp() {
         React.createElement(
             "h1",
             null,
-            "Count: ",
-            count
+            app.title
+        ),
+        app.subtitle && React.createElement(
+            "p",
+            null,
+            app.subtitle
+        ),
+        React.createElement(
+            "p",
+            null,
+            app.options && app.options.length > 0 ? "Here are your options" : "No options"
+        ),
+        React.createElement(
+            "p",
+            null,
+            "Options added: ",
+            app.options.length
         ),
         React.createElement(
             "button",
-            { onClick: addOne },
-            "+1"
+            { id: "remove-all", onClick: onremoveAllOptions },
+            "Remove All"
         ),
         React.createElement(
-            "button",
-            { onClick: minusOne },
-            "-1"
+            "ol",
+            null,
+            React.createElement(
+                "li",
+                null,
+                "Item 1"
+            ),
+            React.createElement(
+                "li",
+                null,
+                "Item 2"
+            )
         ),
         React.createElement(
-            "button",
-            { onClick: reset },
-            "Reset"
+            "form",
+            { onSubmit: onFormSubmit },
+            React.createElement("input", { type: "text", name: "option" }),
+            React.createElement(
+                "button",
+                null,
+                "Add option"
+            )
         )
     );
     ReactDOM.render(template, appRoot);
