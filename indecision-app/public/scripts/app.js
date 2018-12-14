@@ -23,6 +23,12 @@ var onremoveAllOptions = function onremoveAllOptions() {
     renderApp();
 };
 
+var onMakeDecision = function onMakeDecision() {
+    var index = Math.floor(Math.random() * app.options.length);
+    var option = app.options[index];
+    alert(option);
+};
+
 var renderApp = function renderApp() {
     var template = React.createElement(
         "div",
@@ -43,10 +49,9 @@ var renderApp = function renderApp() {
             app.options && app.options.length > 0 ? "Here are your options" : "No options"
         ),
         React.createElement(
-            "p",
-            null,
-            "Options added: ",
-            app.options.length
+            "button",
+            { disabled: app.options.length === 0, onClick: onMakeDecision },
+            "What should I do?"
         ),
         React.createElement(
             "button",
