@@ -40,7 +40,7 @@ class Traveler extends Person {
     }
     getGreeting() {
         let greeting = super.getGreeting();
-        if (!!this.homeLocation) {
+        if (this.homeLocation) {
             greeting += ` I'm visiting from ${this.homeLocation}.`;
         }
         return greeting;
