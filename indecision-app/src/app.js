@@ -13,8 +13,6 @@ class IndecisionApp extends React.Component {
     }
 
     componentDidMount() {
-        console.log('Fetching data');
-
         try {
             const optionsStorage = localStorage.getItem('options');
             if (optionsStorage) {
