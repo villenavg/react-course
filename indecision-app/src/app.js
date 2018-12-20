@@ -14,10 +14,22 @@ class IndecisionApp extends React.Component {
 
     componentDidMount() {
         console.log('Fetching data');
+
+        try {
+            const optionsStorage = localStorage.getItem('options');
+            if (optionsStorage) {
+                this.setState(() => ({options: JSON.parse(optionsStorage)}));
+            }
+        } catch (e) {
+            // nothing
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('Saving data!');
+        if (prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem("options", json);
+        }
     }
 
     componentWillUnmount() {
@@ -106,6 +118,7 @@ const Action = (props) => {
 const Options = (props) => {
     return (
         <div>
+            {props.options.length === 0 && <p>Please add an option to get started!</p>}
             <p> Options: {props.options.length}</p>
             <ol>
             {
@@ -147,6 +160,10 @@ class AddOption extends React.Component {
         const error = this.props.handleAddOption(option);
         
         this.setState(() => ({error}));
+        
+        if (!error) {
+            event.target.elements.option.value = '';
+        }
     }
 
     render() {
@@ -162,5 +179,5 @@ class AddOption extends React.Component {
     }
 }
 
-const app = <IndecisionApp subtitle="Put your life in the hands of a computer" options={["a", "b", "c"]}/>
+const app = <IndecisionApp subtitle="Put your life in the hands of a computer"/>
 ReactDOM.render(app, document.getElementById('app'));
