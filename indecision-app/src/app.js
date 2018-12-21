@@ -1,6 +1,6 @@
-import validator from 'validator';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp'
 
-const template = <p>Testing 1234</p>
-ReactDOM.render(template, document.getElementById('app'));
+const app = <IndecisionApp subtitle="Put your life in the hands of a computer"/>
+ReactDOM.render(app, document.getElementById('app'));
