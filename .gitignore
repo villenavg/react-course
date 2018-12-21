@@ -1,3 +1,4 @@
 indecision-app/public/scripts/app.js
 node_modules
 .vscode
+bundle.js
