@@ -14,16 +14,18 @@ console.log(store.getState());
 
 store.dispatch(addExpense({
     description: 'Water bill',
+    amount: 4500
 }));
 
 store.dispatch(addExpense({
     description: 'Gas bill',
+    amount: 5000
 }));
 
 store.dispatch(setTextFilter("gas"));
 
 setTimeout(() => {
-    store.dispatch(setTextFilter("Miau"));
+    store.dispatch(setTextFilter("bill"));
 }, 3000);
 
 const state = store.getState();
