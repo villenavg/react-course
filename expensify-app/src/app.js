@@ -19,14 +19,14 @@ store.dispatch(addExpense({
 
 store.dispatch(addExpense({
     description: 'Gas bill',
-    amount: 5000
+    amount: 5000,
+    createdAt: 1000
 }));
 
-store.dispatch(setTextFilter("gas"));
-
-setTimeout(() => {
-    store.dispatch(setTextFilter("bill"));
-}, 3000);
+store.dispatch(addExpense({
+    description: 'Rent',
+    amount: 109500
+}));
 
 const state = store.getState();
 console.log(getVisibleExpenses(state.expenses, state.filters));
